@@ -15,6 +15,7 @@
 		51CD4D6520E2EB0700C5E989 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51CD4D6420E2EB0700C5E989 /* main.m */; };
 		51CD4D6F20E2EB0700C5E989 /* To_Do_ListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 51CD4D6E20E2EB0700C5E989 /* To_Do_ListTests.m */; };
 		51CD4D7A20E2EB0700C5E989 /* To_Do_ListUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 51CD4D7920E2EB0700C5E989 /* To_Do_ListUITests.m */; };
+		51CD4D8A20E2ED6F00C5E989 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 51CD4D8920E2ED6F00C5E989 /* Task.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		51CD4D7520E2EB0700C5E989 /* To_Do_ListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = To_Do_ListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		51CD4D7920E2EB0700C5E989 /* To_Do_ListUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = To_Do_ListUITests.m; sourceTree = "<group>"; };
 		51CD4D7B20E2EB0700C5E989 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51CD4D8820E2ED6F00C5E989 /* Task.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		51CD4D8920E2ED6F00C5E989 /* Task.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		51CD4D5420E2EB0600C5E989 /* To_Do_List */ = {
 			isa = PBXGroup;
 			children = (
+				51CD4D8720E2ED4400C5E989 /* Objects */,
 				51CD4D5520E2EB0600C5E989 /* AppDelegate.h */,
 				51CD4D5620E2EB0600C5E989 /* AppDelegate.m */,
 				51CD4D5820E2EB0600C5E989 /* ViewController.h */,
@@ -130,6 +134,15 @@
 				51CD4D7B20E2EB0700C5E989 /* Info.plist */,
 			);
 			path = To_Do_ListUITests;
+			sourceTree = "<group>";
+		};
+		51CD4D8720E2ED4400C5E989 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				51CD4D8820E2ED6F00C5E989 /* Task.h */,
+				51CD4D8920E2ED6F00C5E989 /* Task.m */,
+			);
+			path = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51CD4D8A20E2ED6F00C5E989 /* Task.m in Sources */,
 				51CD4D5A20E2EB0600C5E989 /* ViewController.m in Sources */,
 				51CD4D6520E2EB0700C5E989 /* main.m in Sources */,
 				51CD4D5720E2EB0600C5E989 /* AppDelegate.m in Sources */,
