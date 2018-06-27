@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Task : NSObject
+@interface Task : NSObject{}
+
+@property(nonatomic, readwrite) NSString* TaskName;
+@property(nonatomic, readwrite) NSDate* DueDate;
 
 @end

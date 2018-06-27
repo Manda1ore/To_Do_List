@@ -16,7 +16,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    TaskArray = [[NSMutableArray alloc]initWithObjects:
+                  @"Data 1 in array",@"Data 2 in array",@"Data 3 in array",
+                  @"Data 4 in array",@"Data 5 in array",@"Data 5 in array",
+                  @"Data 6 in array",@"Data 7 in array",@"Data 8 in array",
+                  @"Data 9 in array", nil];
 }
 
 
@@ -24,6 +28,30 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"cellID";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
+                             cellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:
+                UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    NSString *stringForCell;
+    
+    stringForCell= [TaskArray objectAtIndex:indexPath.row];
+    [cell.textLabel setText:stringForCell];
+    return cell;
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return TaskArray.count;
+}
+
 
 
 @end
