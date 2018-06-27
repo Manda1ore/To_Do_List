@@ -10,6 +10,12 @@
 
 @implementation Task
 
+- (void)setName: (NSString *)name {
+    _TaskName = name;
+}
 
+- (void)setDate: (NSDate *)date {
+    _DueDate = date;
+}
 
 @end
