@@ -8,23 +8,17 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () { }
+
 @property(nonatomic,strong) NSMutableArray *taskArray;
+@property (weak, nonatomic) IBOutlet UITableView *table;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    if (((NSMutableArray *)[prefs objectForKey:@"Task"]).count== 0) {
-        _taskArray = [NSMutableArray array];
-        [prefs setObject:_taskArray forKey:@"Task"];
-    }
-    else{
-        _taskArray = [prefs objectForKey:@"Task"];
-    }
-    self.navigationItem.hidesBackButton = true;
+    [self setUpArray];
 }
 
 
@@ -33,6 +27,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) setUpArray {
+    _taskArray = [NSMutableArray arrayWithArray: @[@"Test", @"Test 2"]];
+}
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"cellID";
@@ -56,6 +53,14 @@
     return _taskArray.count;
 }
 
+// Remove
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [_taskArray removeObjectAtIndex: indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject: indexPath] withRowAnimation: UITableViewRowAnimationFade];
+    }
+}
+
 -(void) addTask:(Task *) task{
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     _taskArray = (NSMutableArray *)[prefs objectForKey:@"Task"];
@@ -64,6 +69,10 @@
     [_taskArray addObject:(task)];
 }
 
-
+- (IBAction)editTapped:(id)sender {
+    // TODO: - Send data from tapped task to new View.
+    // Insert data into View elements.
+    // When complete, replace data in array
+}
 
 @end
