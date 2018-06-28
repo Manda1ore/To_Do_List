@@ -68,7 +68,7 @@
                     <navigationItem key="navigationItem" title="To-Do-List" id="RxU-FU-fop">
                         <barButtonItem key="rightBarButtonItem" title="Create Task" id="0S9-UE-ovI">
                             <connections>
-                                <segue destination="LhL-eG-Htp" kind="show" id="6pT-1K-bUN"/>
+                                <segue destination="LhL-eG-Htp" kind="show" identifier="ToCreateTask" id="6pT-1K-bUN"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -120,11 +120,24 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3y6-Ol-jej"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Task" id="Vnh-Wz-vMo"/>
+                    <navigationItem key="navigationItem" title="Task" id="Vnh-Wz-vMo">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="6Rf-pB-h0y">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="ToMainViewController" id="BTB-Gp-ZCA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="DueDatePicker" destination="q8X-H2-B7P" id="Cb2-IN-W3U"/>
+                        <outlet property="TaskNameTextBox" destination="8ao-gJ-04y" id="thO-Nd-rcZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKs-cR-Sf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="759.20000000000005" y="33.733133433283363"/>
+            <point key="canvasLocation" x="964" y="22"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="BTB-Gp-ZCA"/>
+    </inferredMetricsTieBreakers>
 </document>

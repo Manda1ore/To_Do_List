@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ViewController.h"
+#import "Task.h"
 @interface TaskCreationViewController : UIViewController
 
 @end

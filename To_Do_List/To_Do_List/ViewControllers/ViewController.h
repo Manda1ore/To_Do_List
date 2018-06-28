@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Task.h"
 
 @interface ViewController : UIViewController<UITableViewDataSource,
 UITableViewDelegate>{
-IBOutlet UITableView *TaskTable;
-NSMutableArray *TaskArray;
+    IBOutlet UITableView *TaskTable;
 }
+-(void)addTask:(Task *)task;
 @end
 

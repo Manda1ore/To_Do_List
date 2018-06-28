@@ -9,18 +9,22 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
+@property(nonatomic,strong) NSMutableArray *taskArray;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    TaskArray = [[NSMutableArray alloc]initWithObjects:
-                  @"Data 1 in array",@"Data 2 in array",@"Data 3 in array",
-                  @"Data 4 in array",@"Data 5 in array",@"Data 5 in array",
-                  @"Data 6 in array",@"Data 7 in array",@"Data 8 in array",
-                  @"Data 9 in array", nil];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    if (((NSMutableArray *)[prefs objectForKey:@"Task"]).count== 0) {
+        _taskArray = [NSMutableArray array];
+        [prefs setObject:_taskArray forKey:@"Task"];
+    }
+    else{
+        _taskArray = [prefs objectForKey:@"Task"];
+    }
+    self.navigationItem.hidesBackButton = true;
 }
 
 
@@ -43,13 +47,21 @@
     
     NSString *stringForCell;
     
-    stringForCell= [TaskArray objectAtIndex:indexPath.row];
+    stringForCell= [_taskArray objectAtIndex:indexPath.row];
     [cell.textLabel setText:stringForCell];
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return TaskArray.count;
+    return _taskArray.count;
+}
+
+-(void) addTask:(Task *) task{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    _taskArray = (NSMutableArray *)[prefs objectForKey:@"Task"];
+    NSLog(@"%@", task.TaskName);
+    NSLog(@"%@", _taskArray);
+    [_taskArray addObject:(task)];
 }
 
 
