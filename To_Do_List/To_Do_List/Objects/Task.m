@@ -18,4 +18,14 @@
     _DueDate = date;
 }
 
+- (NSString *)description {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setTimeStyle:NSDateFormatterNoStyle];
+    NSString *result = [formatter stringFromDate: _DueDate];
+    
+    return [NSString stringWithFormat: @"%@ | %@", _TaskName, result];
+}
+
 @end
