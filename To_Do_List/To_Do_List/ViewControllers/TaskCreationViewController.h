@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ViewController.h"
 #import "Task.h"
+@protocol SaveProtocol <NSObject>
+-(void) createTask:(Task *) task;
+@end
+
 @interface TaskCreationViewController : UIViewController
+@property (strong, nonatomic) id<SaveProtocol> delegate;
 
 @end

@@ -7,26 +7,18 @@
 //
 
 #import "ViewController.h"
-
 @interface ViewController ()
 @property(nonatomic,strong) NSMutableArray *taskArray;
+@property(nonatomic, strong) Task *selectedTask;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    if (((NSMutableArray *)[prefs objectForKey:@"Task"]).count== 0) {
-        _taskArray = [NSMutableArray array];
-        [prefs setObject:_taskArray forKey:@"Task"];
-    }
-    else{
-        _taskArray = [prefs objectForKey:@"Task"];
-    }
+    _taskArray = [NSMutableArray array];
     self.navigationItem.hidesBackButton = true;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -45,10 +37,10 @@
                 UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    NSString *stringForCell;
+    Task *task;
     
-    stringForCell= [_taskArray objectAtIndex:indexPath.row];
-    [cell.textLabel setText:stringForCell];
+    task = [self.taskArray objectAtIndex:indexPath.row];
+    [cell.textLabel setText:task.taskName];
     return cell;
 }
 
@@ -56,14 +48,20 @@
     return _taskArray.count;
 }
 
--(void) addTask:(Task *) task{
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    _taskArray = (NSMutableArray *)[prefs objectForKey:@"Task"];
-    NSLog(@"%@", task.TaskName);
-    NSLog(@"%@", _taskArray);
-    [_taskArray addObject:(task)];
+- (void)createTask:(Task *) task{
+    [self.taskArray addObject:task];
+    [self.taskTable reloadData];
 }
 
 
-
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"ToCreateTask"])
+    {
+        TaskCreationViewController *destViewController = segue.destinationViewController;
+        destViewController.delegate = self;
+    }
+}
 @end

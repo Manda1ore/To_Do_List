@@ -121,9 +121,18 @@
                         <viewLayoutGuide key="safeArea" id="3y6-Ol-jej"/>
                     </view>
                     <navigationItem key="navigationItem" title="Task" id="Vnh-Wz-vMo">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="6Rf-pB-h0y">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="TF6-C3-UvH">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3aP-kN-xZz">
+                                <rect key="frame" x="325" y="7" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Save"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveTask:" destination="LhL-eG-Htp" eventType="touchUpInside" id="sQy-gJ-qiX"/>
+                                </connections>
+                            </button>
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" identifier="ToMainViewController" id="BTB-Gp-ZCA"/>
+                                <action selector="saveTask:" destination="LhL-eG-Htp" id="ohR-Go-vRC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -134,10 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKs-cR-Sf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="964" y="22"/>
+            <point key="canvasLocation" x="964" y="34"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="BTB-Gp-ZCA"/>
-    </inferredMetricsTieBreakers>
 </document>

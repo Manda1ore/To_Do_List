@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Task.h"
-
-@interface ViewController : UIViewController<UITableViewDataSource,
-UITableViewDelegate>{
-    IBOutlet UITableView *TaskTable;
+#import "TaskCreationViewController.h"
+@interface ViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, SaveProtocol>
+{
 }
--(void)addTask:(Task *)task;
+
+@property(nonatomic, strong) IBOutlet UITableView *taskTable;
+
 @end
 
