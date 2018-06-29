@@ -29,7 +29,6 @@
     task.dueDate = self.dueDatePicker.date;
     [self.delegate createTask:task ];
     [self.navigationController popViewControllerAnimated:YES];
-//    [self dismissViewControllerAnimated:true completion: nil];
 }
 
 
