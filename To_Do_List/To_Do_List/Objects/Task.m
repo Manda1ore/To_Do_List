@@ -11,11 +11,11 @@
 @implementation Task
 
 - (void)setName: (NSString *)name {
-    _TaskName = name;
+    _taskName = name;
 }
 
 - (void)setDate: (NSDate *)date {
-    _DueDate = date;
+    _dueDate = date;
 }
 
 - (NSString *)description {
@@ -23,9 +23,9 @@
     [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
     [formatter setDateStyle:NSDateFormatterShortStyle];
     [formatter setTimeStyle:NSDateFormatterNoStyle];
-    NSString *result = [formatter stringFromDate: _DueDate];
+    NSString *result = [formatter stringFromDate: _dueDate];
     
-    return [NSString stringWithFormat: @"%@ | %@", _TaskName, result];
+    return [NSString stringWithFormat: @"%@ | %@", _taskName, result];
 }
 
 @end

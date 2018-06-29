@@ -42,38 +42,32 @@
                                     <constraint firstAttribute="height" constant="141" id="z02-59-DpU"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cellID" id="EcY-lK-gQh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellID" textLabel="d2h-4e-088" detailTextLabel="aFO-mE-EhY" style="IBUITableViewCellStyleValue1" id="EcY-lK-gQh">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cellIdentifier" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EcY-lK-gQh" id="lHT-Az-sJg">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Gx-Bh-9wf">
-                                                    <rect key="frame" x="15" y="11" width="146" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d2h-4e-088">
+                                                    <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgj-uF-3I1">
-                                                    <rect key="frame" x="169" y="11" width="99" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aFO-mE-EhY">
+                                                    <rect key="frame" x="284" y="12" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mz5-nd-a9S">
-                                                    <rect key="frame" x="276" y="11" width="46" height="22"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                    <state key="normal" title="-&gt;"/>
-                                                    <connections>
-                                                        <action selector="editTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RKu-ec-6aJ"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="LhL-eG-Htp" kind="show" identifier="editTask" id="GgH-Xh-Jh0"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -99,12 +93,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="TaskTable" destination="wZF-le-Xh4" id="Ajt-D9-d3Y"/>
-                        <outlet property="table" destination="wZF-le-Xh4" id="3K5-2J-5Lm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="109.59999999999999" y="33.733133433283363"/>
+            <point key="canvasLocation" x="194" y="34"/>
         </scene>
         <!--Task-->
         <scene sceneID="VT2-Ri-hKw">
@@ -147,9 +140,18 @@
                         <viewLayoutGuide key="safeArea" id="3y6-Ol-jej"/>
                     </view>
                     <navigationItem key="navigationItem" title="Task" id="Vnh-Wz-vMo">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="6Rf-pB-h0y">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="TF6-C3-UvH">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3aP-kN-xZz">
+                                <rect key="frame" x="325" y="7" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" label="Save"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveTask:" destination="LhL-eG-Htp" eventType="touchUpInside" id="sQy-gJ-qiX"/>
+                                </connections>
+                            </button>
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" identifier="ToMainViewController" id="BTB-Gp-ZCA"/>
+                                <action selector="saveTask:" destination="LhL-eG-Htp" id="ohR-Go-vRC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -160,10 +162,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aKs-cR-Sf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="964" y="22"/>
+            <point key="canvasLocation" x="964" y="34"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="U0g-xP-qXH"/>
+        <segue reference="GgH-Xh-Jh0"/>
     </inferredMetricsTieBreakers>
 </document>

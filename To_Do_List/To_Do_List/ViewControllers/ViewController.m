@@ -7,21 +7,22 @@
 //
 
 #import "ViewController.h"
-#import "TappedTask.h"
 
 @interface ViewController () { }
 
 @property(nonatomic,strong) NSMutableArray *taskArray;
-@property (weak, nonatomic) IBOutlet UITableView *table;
+@property(nonatomic, strong) Task *selectedTask;
 @end
 
 @implementation ViewController
+int counter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setUpArray];
+    _taskArray = [NSMutableArray array];
+    self.navigationItem.hidesBackButton = true;
+    counter = 0;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -59,11 +60,12 @@
         cell = [[UITableViewCell alloc]initWithStyle:
                 UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row + 1];
     
-    NSString *taskDetails;
-    taskDetails= [_taskArray objectAtIndex:indexPath.row];
-    [cell.textLabel setText:taskDetails];
+    Task *task;
     
+    task = [self.taskArray objectAtIndex:indexPath.row];
+    [cell.textLabel setText:task.taskName];
     return cell;
 }
 
@@ -79,26 +81,44 @@
     }
 }
 
--(void) addTask:(Task *) task{
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    _taskArray = (NSMutableArray *)[prefs objectForKey:@"Task"];
-    NSLog(@"%@", task.TaskName);
-    NSLog(@"%@", _taskArray);
-    [_taskArray addObject:(task)];
+- (void)createTask:(Task *) task{
+    bool taskFound = NO;
+    for (int num = 0; num < self.taskArray.count && !taskFound; num++) {
+        if (num == task.taskId) {
+            taskFound = YES;
+            [self.taskArray replaceObjectAtIndex:num withObject:task];
+        }
+    }
+    if (!taskFound) {
+        task.taskId = counter;
+        [self.taskArray addObject:task];
+        counter++;
+    }
+    [self.taskTable reloadData];
 }
 
-- (IBAction)editTapped:(id)sender {
-    // TODO: - Send data from tapped task to new View.
-    // Insert data into View elements.
-    // When complete, replace data in array
-    TappedTask *task = [[TappedTask alloc] init];
-    
-    NSArray *array = [[NSArray alloc] init];
-    array = [_taskArray[0] componentsSeparatedByString:@"|"];
-    
-    [task setData:array[0] argument2:array[1]];
-    NSLog(@" Name: %@, Date: %@", task.data.name, task.data.date.description);
-    
-}
 
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"ToCreateTask"])
+    {
+        TaskCreationViewController *destViewController = segue.destinationViewController;
+        destViewController.delegate = self;
+        [destViewController setId: counter];
+    }
+    else if ([[segue identifier] isEqualToString:@"editTask"]) {
+        TaskCreationViewController *destViewController = segue.destinationViewController;
+        destViewController.delegate = self;
+        
+        UITableViewCell *cell = sender;
+        
+        int taskId = (int)[cell.detailTextLabel.text integerValue];
+        
+        Task *task = [self.taskArray objectAtIndex:taskId - 1];
+        
+        [destViewController setTask:task];
+    }
+}
 @end
