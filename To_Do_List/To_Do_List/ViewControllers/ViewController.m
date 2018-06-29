@@ -65,7 +65,7 @@ int counter;
     Task *task;
     
     task = [self.taskArray objectAtIndex:indexPath.row];
-    [cell.textLabel setText:task.taskName];
+    [cell.textLabel setText:task.description];
     return cell;
 }
 
