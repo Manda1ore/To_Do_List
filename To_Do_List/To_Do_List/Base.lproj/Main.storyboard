@@ -140,7 +140,7 @@
                         <viewLayoutGuide key="safeArea" id="3y6-Ol-jej"/>
                     </view>
                     <navigationItem key="navigationItem" title="Task" id="Vnh-Wz-vMo">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="TF6-C3-UvH">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="TF6-C3-UvH">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3aP-kN-xZz">
                                 <rect key="frame" x="325" y="7" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
