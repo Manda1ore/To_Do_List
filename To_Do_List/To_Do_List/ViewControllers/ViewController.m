@@ -29,26 +29,6 @@ int counter;
     // Dispose of any resources that can be recreated.
 }
 
-- (void) setUpArray {
-    Task *task = [[Task alloc] init];
-    Task *task2 = [[Task alloc] init];
-    Task *task3 = [[Task alloc] init];
-    
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:28];
-    [comps setMonth:06];
-    [comps setYear:2018];
-    
-    [task setTaskName: @"Buy Grocieries"];
-    [task setDueDate:[[NSCalendar currentCalendar] dateFromComponents:comps]];
-    [task2 setTaskName: @"Talk With Britta"];
-    [task2 setDueDate:[[NSCalendar currentCalendar] dateFromComponents:comps]];
-    [task3 setTaskName: @"Finish Homework"];
-    [task3 setDueDate:[[NSCalendar currentCalendar] dateFromComponents:comps]];
-    
-    
-    _taskArray = [NSMutableArray arrayWithArray: @[task.description, task2.description, task3.description]];
-}
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"cellID";
