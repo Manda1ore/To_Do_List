@@ -10,8 +10,9 @@
 
 @interface Task : NSObject{}
 
-@property(nonatomic, readwrite) int taskId;
+@property(nonatomic, readonly) int taskId;
 @property(nonatomic, readwrite) NSString* taskName;
 @property(nonatomic, readwrite) NSDate* dueDate;
 
+-(id) initWithId:(int)taskID;
 @end

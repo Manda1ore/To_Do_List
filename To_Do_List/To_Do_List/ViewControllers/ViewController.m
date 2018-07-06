@@ -70,7 +70,6 @@ int counter;
         }
     }
     if (!taskFound) {
-        task.taskId = counter;
         [self.taskArray addObject:task];
         counter++;
     }

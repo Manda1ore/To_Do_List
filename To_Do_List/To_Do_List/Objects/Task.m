@@ -9,6 +9,11 @@
 #import "Task.h"
 
 @implementation Task
+- (id) initWithId:(int)taskID{
+    self = [super init];
+    _taskId = taskID;
+    return self;
+}
 
 - (void)setName: (NSString *)name {
     _taskName = name;

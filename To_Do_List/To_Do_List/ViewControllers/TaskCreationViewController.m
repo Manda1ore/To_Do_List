@@ -31,8 +31,7 @@ int currentId;
 }
 
 - (IBAction)saveTask:(id)sender {
-    Task *task = [[Task alloc] init];
-    task.taskId = currentId;
+    Task *task = [[Task alloc] initWithId:currentId];
     task.taskName = self.taskNameTextBox.text;
     task.dueDate = self.dueDatePicker.date;
     [self.delegate createTask:task];
