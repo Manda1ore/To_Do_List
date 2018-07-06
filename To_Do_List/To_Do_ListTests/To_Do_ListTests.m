@@ -35,7 +35,7 @@
     task.taskId = 0;
     task.taskName = @"test";
     task.dueDate = [NSDate date];
-    [self.viewController createTask:(task)];
+    [self.viewController updateTaskList:(task)];
     XCTAssertNotNil(self.viewController.taskTable, @"Table is not null");
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
@@ -46,7 +46,7 @@
     task.taskId = 0;
     task.taskName = @"test";
     task.dueDate = [NSDate date];
-    [self.viewController createTask:(task)];
+    [self.viewController updateTaskList:(task)];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.viewController tableView:[self.viewController taskTable] commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
 }
@@ -57,7 +57,7 @@
         task.taskId = i;
         task.taskName = @"test";
         task.dueDate = [NSDate date];
-        [self.viewController createTask:(task)];
+        [self.viewController updateTaskList:(task)];
     }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.viewController tableView:[self.viewController taskTable] commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
@@ -70,13 +70,13 @@
         task.taskId = i;
         task.taskName = @"test";
         task.dueDate = [NSDate date];
-        [self.viewController createTask:(task)];
+        [self.viewController updateTaskList:(task)];
     }
     Task *editedTask = [[Task alloc] init];
     editedTask.taskId = 0;
     editedTask.taskName = @"editedTest";
     editedTask.dueDate = [NSDate date];
-    [self.viewController createTask:(editedTask)];
+    [self.viewController updateTaskList:(editedTask)];
     XCTAssertEqual(4, [self.viewController.taskTable numberOfRowsInSection:0]);
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     UITableViewCell *cell =[self.viewController tableView:[self.viewController taskTable] cellForRowAtIndexPath:indexPath];

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Task.h"
 @protocol SaveProtocol <NSObject>
--(void) createTask:(Task *) task;
+-(void) updateTaskList:(Task *) task;
 @end
 
 @interface TaskCreationViewController : UIViewController

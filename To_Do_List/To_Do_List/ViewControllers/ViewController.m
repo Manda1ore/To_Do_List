@@ -61,7 +61,7 @@ int counter;
     }
 }
 
-- (void)createTask:(Task *) task{
+- (void)updateTaskList:(Task *) task{
     bool taskFound = NO;
     for (int num = 0; num < self.taskArray.count && !taskFound; num++) {
         if (num == task.taskId) {
@@ -81,15 +81,13 @@ int counter;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    TaskCreationViewController *destViewController = segue.destinationViewController;
+    destViewController.delegate = self;
     if ([[segue identifier] isEqualToString:@"ToCreateTask"])
     {
-        TaskCreationViewController *destViewController = segue.destinationViewController;
-        destViewController.delegate = self;
         [destViewController setId: counter];
     }
     else if ([[segue identifier] isEqualToString:@"editTask"]) {
-        TaskCreationViewController *destViewController = segue.destinationViewController;
-        destViewController.delegate = self;
         
         UITableViewCell *cell = sender;
         

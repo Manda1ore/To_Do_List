@@ -22,6 +22,7 @@ int currentId;
     if (self.currentTask) {
         _taskNameTextBox.text = self.currentTask.taskName;
         _dueDatePicker.date = self.currentTask.dueDate;
+        currentId = self.currentTask.taskId;
     }
 }
 
@@ -34,7 +35,7 @@ int currentId;
     Task *task = [[Task alloc] initWithId:currentId];
     task.taskName = self.taskNameTextBox.text;
     task.dueDate = self.dueDatePicker.date;
-    [self.delegate createTask:task];
+    [self.delegate updateTaskList:task];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
