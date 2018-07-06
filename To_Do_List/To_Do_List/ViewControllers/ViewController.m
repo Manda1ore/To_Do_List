@@ -40,12 +40,12 @@ int counter;
         cell = [[UITableViewCell alloc]initWithStyle:
                 UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row + 1];
     
     Task *task;
     
     task = [self.taskArray objectAtIndex:indexPath.row];
     [cell.textLabel setText:task.description];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",(long)task.taskId];
     return cell;
 }
 
@@ -76,11 +76,7 @@ int counter;
     [self.taskTable reloadData];
 }
 
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     TaskCreationViewController *destViewController = segue.destinationViewController;
     destViewController.delegate = self;
     if ([[segue identifier] isEqualToString:@"ToCreateTask"])
@@ -93,7 +89,7 @@ int counter;
         
         int taskId = (int)[cell.detailTextLabel.text integerValue];
         
-        Task *task = [self.taskArray objectAtIndex:taskId - 1];
+        Task *task = [self.taskArray objectAtIndex:taskId];
         
         [destViewController setTask:task];
     }
