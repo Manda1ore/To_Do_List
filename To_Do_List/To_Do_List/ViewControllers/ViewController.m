@@ -9,12 +9,9 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-{
-    NSInteger counter;
-}
 
 @property(nonatomic, strong) Task *selectedTask;
-@property(nonatomic, assign) NSInteger counter;
+@property(nonatomic, assign) NSInteger* counter;
 @end
 @implementation ViewController
 
@@ -22,7 +19,7 @@
     [super viewDidLoad];
     _taskArray = [NSMutableArray array];
     self.navigationItem.hidesBackButton = true;
-    counter = 0;
+    self.counter = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,15 +55,15 @@
 
 - (void)updateTaskList:(Task *) task{
     bool taskFound = NO;
-    for (int num = 0; num < self.taskArray.count && !taskFound; num++) {
-        if (num == task.taskId) {
+    for (NSInteger num = 0; num < self.taskArray.count && !taskFound; num++) {
+        if (num == *task.taskId) {
             taskFound = YES;
             [self.taskArray replaceObjectAtIndex:num withObject:task];
         }
     }
     if (!taskFound) {
         [self.taskArray addObject:task];
-        counter++;
+        _counter++;
     }
     [self.taskTable reloadData];
 }
@@ -75,7 +72,7 @@
     TaskCreationViewController *destViewController = segue.destinationViewController;
     destViewController.delegate = self;
     if ([[segue identifier] isEqualToString:@"ToCreateTask"]) {
-        [destViewController setId: counter];
+        [destViewController setId: self.counter];
     } else if ([[segue identifier] isEqualToString:@"editTask"]) {
         UITableViewCell *cell = sender;
         int taskId = (int)[cell.detailTextLabel.text integerValue];

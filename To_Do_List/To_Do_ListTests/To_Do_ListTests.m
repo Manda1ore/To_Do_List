@@ -45,15 +45,19 @@
     task.taskName = @"test";
     task.dueDate = [NSDate date];
     [self.viewController updateTaskList:(task)];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.viewController tableView:[self.viewController taskTable] commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
-    XCTAssertEqual(0, [self.viewController.taskTable numberOfRowsInSection:0]);
+    
+    XCTAssertEqual(1, self.viewController.taskArray.count);
+    XCTAssertTrue([self.viewController tableView:self.viewController.taskTable numberOfRowsInSection:0] == 1);
+    [self.viewController.taskArray removeObjectAtIndex:0];
+    
+    XCTAssertTrue(self.viewController.taskArray.firstObject == nil);
     XCTAssertEqual(0, self.viewController.taskArray.count);
+    XCTAssertTrue([self.viewController tableView:self.viewController.taskTable numberOfRowsInSection:0] == 0);
 }
 
 -(void)testDeleteWithMultipleTasks{
-    for(int i = 0; i < 4; i++){
-        Task *task = [[Task alloc] initWithId:i];
+    for(NSInteger i = 0; i < 4; i++){
+        Task *task = [[Task alloc] initWithId:&i];
         task.taskName = @"test";
         task.dueDate = [NSDate date];
         [self.viewController updateTaskList:(task)];
