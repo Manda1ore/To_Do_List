@@ -9,7 +9,7 @@
 #import "Task.h"
 
 @implementation Task
-- (id) initWithId:(NSInteger*)taskID{
+- (id) initWithId:(NSInteger)taskID{
     self = [super init];
     _taskId = taskID;
     return self;

@@ -11,7 +11,7 @@
 @interface ViewController ()
 
 @property(nonatomic, strong) Task *selectedTask;
-@property(nonatomic, assign) NSInteger* counter;
+@property(nonatomic, assign) NSInteger counter;
 @end
 @implementation ViewController
 
@@ -56,7 +56,7 @@
 - (void)updateTaskList:(Task *) task{
     bool taskFound = NO;
     for (NSInteger num = 0; num < self.taskArray.count && !taskFound; num++) {
-        if (num == *task.taskId) {
+        if (num == task.taskId) {
             taskFound = YES;
             [self.taskArray replaceObjectAtIndex:num withObject:task];
         }

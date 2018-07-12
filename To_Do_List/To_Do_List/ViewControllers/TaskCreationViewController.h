@@ -15,6 +15,6 @@
 @interface TaskCreationViewController : UIViewController
 @property (strong, nonatomic) id<SaveProtocol> delegate;
 - (void) setTask: (Task *)task;
-- (void) setId: (NSInteger *)currId;
+- (void) setId: (NSInteger)currId;
 
 @end

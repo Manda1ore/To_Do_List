@@ -11,7 +11,7 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *dueDatePicker;
 @property (weak, nonatomic) IBOutlet UITextField *taskNameTextBox;
 @property (strong, nonatomic) Task *currentTask;
-@property (nonatomic, assign) NSInteger *currentId;
+@property (nonatomic, assign) NSInteger currentId;
 @end
 
 @implementation TaskCreationViewController
@@ -45,7 +45,7 @@
     _currentTask = task;
 }
 
-- (void) setId:(NSInteger*)currId {
+- (void) setId:(NSInteger)currId {
     self.currentId = currId;
 }
 
