@@ -19,6 +19,7 @@ int currentId;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _dueDatePicker.minimumDate = [NSDate date];
     if (self.currentTask) {
         _taskNameTextBox.text = self.currentTask.taskName;
         _dueDatePicker.date = self.currentTask.dueDate;

@@ -10,9 +10,8 @@
 #import "Task.h"
 #import "TaskCreationViewController.h"
 @interface ViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, SaveProtocol>
-{
-}
 
+@property(nonatomic,strong) NSMutableArray *taskArray;
 @property(nonatomic, strong) IBOutlet UITableView *taskTable;
 
 @end

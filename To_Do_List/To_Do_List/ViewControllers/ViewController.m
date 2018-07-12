@@ -8,14 +8,15 @@
 
 #import "ViewController.h"
 
-@interface ViewController () { }
+@interface ViewController ()
+{
+    NSInteger counter;
+}
 
-@property(nonatomic,strong) NSMutableArray *taskArray;
 @property(nonatomic, strong) Task *selectedTask;
+@property(nonatomic, assign) NSInteger counter;
 @end
-
 @implementation ViewController
-int counter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,18 +32,12 @@ int counter;
 
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"cellID";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:
-                             cellIdentifier];
-    
+    NSString *cellIdentifier = @"cellID";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:
-                UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc]initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
     Task *task;
-    
     task = [self.taskArray objectAtIndex:indexPath.row];
     [cell.textLabel setText:task.description];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",(long)task.taskId];
@@ -79,18 +74,12 @@ int counter;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     TaskCreationViewController *destViewController = segue.destinationViewController;
     destViewController.delegate = self;
-    if ([[segue identifier] isEqualToString:@"ToCreateTask"])
-    {
+    if ([[segue identifier] isEqualToString:@"ToCreateTask"]) {
         [destViewController setId: counter];
-    }
-    else if ([[segue identifier] isEqualToString:@"editTask"]) {
-        
+    } else if ([[segue identifier] isEqualToString:@"editTask"]) {
         UITableViewCell *cell = sender;
-        
         int taskId = (int)[cell.detailTextLabel.text integerValue];
-        
         Task *task = [self.taskArray objectAtIndex:taskId];
-        
         [destViewController setTask:task];
     }
 }

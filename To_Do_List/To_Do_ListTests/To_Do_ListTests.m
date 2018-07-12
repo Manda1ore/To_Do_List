@@ -31,8 +31,7 @@
 }
 
 - (void)testWhenTaskAddedToEmptyTable_ThenTableIsNoLongerNull {
-    Task *task = [[Task alloc] init];
-    task.taskId = 0;
+    Task *task = [[Task alloc] initWithId:0];
     task.taskName = @"test";
     task.dueDate = [NSDate date];
     [self.viewController updateTaskList:(task)];
@@ -42,38 +41,35 @@
 }
 
 -(void)testDeleteTask {
-    Task *task = [[Task alloc] init];
-    task.taskId = 0;
+    Task *task = [[Task alloc] initWithId:0];
     task.taskName = @"test";
     task.dueDate = [NSDate date];
     [self.viewController updateTaskList:(task)];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.viewController tableView:[self.viewController taskTable] commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
+    XCTAssertEqual(0, [self.viewController.taskTable numberOfRowsInSection:0]);
+    XCTAssertEqual(0, self.viewController.taskArray.count);
 }
 
 -(void)testDeleteWithMultipleTasks{
     for(int i = 0; i < 4; i++){
-        Task *task = [[Task alloc] init];
-        task.taskId = i;
+        Task *task = [[Task alloc] initWithId:i];
         task.taskName = @"test";
         task.dueDate = [NSDate date];
         [self.viewController updateTaskList:(task)];
     }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.viewController tableView:[self.viewController taskTable] commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
-    XCTAssertEqual(3, [self.viewController.taskTable numberOfRowsInSection:0]);
 }
 
 -(void) testEditTask{
     for(int i = 0; i < 4; i++){
-        Task *task = [[Task alloc] init];
-        task.taskId = i;
+        Task *task = [[Task alloc] initWithId:i];
         task.taskName = @"test";
         task.dueDate = [NSDate date];
         [self.viewController updateTaskList:(task)];
     }
-    Task *editedTask = [[Task alloc] init];
-    editedTask.taskId = 0;
+    Task *editedTask = [[Task alloc] initWithId:0];
     editedTask.taskName = @"editedTest";
     editedTask.dueDate = [NSDate date];
     [self.viewController updateTaskList:(editedTask)];
