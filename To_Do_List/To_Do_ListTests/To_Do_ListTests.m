@@ -30,6 +30,19 @@
     [super tearDown];
 }
 
+-(void)testCreationOfTask {
+    Task *task = [[Task alloc] initWithId:0];
+    task.taskName = @"test";
+    task.dueDate = [NSDate date];
+    NSDate *newDate = task.dueDate;
+    
+    // TEST CREATED TASK
+    XCTAssertTrue(task.taskId == 0, @"Created Task Id [%ld] does not equal 0.", (long)task.taskId);
+    XCTAssertTrue([task.taskName isEqualToString: @"test"], @"Created Task Name [%@] does not equal set value test.", task.taskName);
+    XCTAssertTrue([task.dueDate isEqualToDate: newDate], @"Created Task Due Date [%@] does not equal set value [%@].", task.dueDate, newDate);
+    XCTAssertTrue([task.description isEqualToString: @"test | 7/13/18"], @"Created Task Description [%@] does not equal set value [test | 7/13/18].", task.description);
+}
+
 - (void)testWhenTaskAddedToEmptyTable_ThenTableIsNoLongerNull {
     Task *task = [[Task alloc] initWithId:0];
     task.taskName = @"test";
@@ -44,19 +57,13 @@
     XCTAssertTrue(self.viewController.taskTable != nil, @"Table is not null.");
     XCTAssertTrue(self.viewController.taskArray.count == 1, @"Array [%lu] does not have 1 Item.", (unsigned long)self.viewController.taskArray.count);
     
-    // TEST CREATED TASK
-    XCTAssertTrue(task.taskId == 0, @"Created Task Id [%ld] does not equal 0.", (long)task.taskId);
-    XCTAssertTrue([task.taskName isEqualToString: @"test"], @"Created Task Name [%@] does not equal set value test.", task.taskName);
-    XCTAssertTrue(task.dueDate == newDate, @"Created Task Due Date [%@] does not equal set value [%@].", task.dueDate, newDate);
-    XCTAssertTrue([task.description isEqualToString: @"test | 7/13/18"], @"Created Task Description [%@] does not equal set value [test | 7/13/18].", task.description);
-    
     // TEST ADDED TASK
     XCTAssertTrue(new.taskId == 0, @"Created Task Id [%ld] does not equal 0.", (long)new.taskId);
     XCTAssertTrue(new.taskId == task.taskId, @"Created Task Id [%ld] does not equal [%ld].", (long)new.taskId, (long)task.taskId);
     XCTAssertTrue([new.taskName isEqualToString: @"test"], @"Created Task Name [%@] does not equal set value test.", new.taskName);
     XCTAssertTrue(new.taskName == task.taskName, @"Created Task Name [%@] does not equal set value [%@].", new.taskName, task.taskName);
-    XCTAssertTrue(new.dueDate == newDate, @"Created Task Due Date [%@] does not equal set value [%@].", new.dueDate, newDate);
-    XCTAssertTrue(new.dueDate == task.dueDate, @"Created Task Due Date [%@] does not equal set value [%@].", new.dueDate, task.dueDate);
+    XCTAssertTrue([new.dueDate isEqualToDate: newDate], @"Created Task Due Date [%@] does not equal set value [%@].", new.dueDate, newDate);
+    XCTAssertTrue([new.dueDate isEqualToDate: task.dueDate], @"Created Task Due Date [%@] does not equal set value [%@].", new.dueDate, task.dueDate);
     XCTAssertTrue([new.description isEqualToString: @"test | 7/13/18"], @"Created Task Description [%@] does not equal set value [test | 7/13/18].", new.description);
     XCTAssertTrue([new.description isEqualToString: task.description], @"Created Task Description [%@] does not equal set value [%@].", new.description, task.description);
     XCTAssertTrue(new == task, @"Created task [%@] does not equal set task [%@].", new, task);
@@ -137,14 +144,14 @@
         NSDate *date = task.dueDate;
         XCTAssertTrue(task.taskId == i, @"Non-edited Task Id [%ld] does not equal %d.", (long)task.taskId, i);
         XCTAssertTrue([task.taskName isEqualToString: @"test"], @"Non-edited Task Name [%@] does not equal set value test.", task.taskName);
-        XCTAssertTrue(task.dueDate == date, @"Non-edited Task Due Date [%@] does not equal set value [%@].", task.dueDate, date);
+        XCTAssertTrue([task.dueDate isEqualToDate: date], @"Non-edited Task Due Date [%@] does not equal set value [%@].", task.dueDate, date);
         XCTAssertTrue([task.description isEqualToString: @"test | 7/13/18"], @"Non-edited Task Description [%@] does not equal set value [test | 7/13/18].", task.description);
     }
     
     // TEST EDITED TASK (OLD VALUES)
     XCTAssertTrue(task1.taskId == 0, @"Non-edited Task Id [%ld] does not equal 0.", (long)task1.taskId);
     XCTAssertTrue(![task1.taskName isEqualToString: @"test"], @"Non-edited Task Name [%@] does equal old value test.", task1.taskName);
-    XCTAssertTrue(task1.dueDate != orignalTask.dueDate, @"Non-edited Task Due Date [%@] does equal old value [%@].", task1.dueDate, orignalTask.dueDate);
+    XCTAssertTrue(![task1.dueDate isEqualToDate: orignalTask.dueDate], @"Non-edited Task Due Date [%@] does equal old value [%@].", task1.dueDate, orignalTask.dueDate);
     XCTAssertTrue(![task1.description isEqualToString: orignalTask.description], @"Non-edited Task Description [%@] does equal old value [%@].", task1.description, orignalTask.description);
     XCTAssertTrue(task1 != orignalTask, @"Edited task [%@] does equal old task [%@].", editedTask, task1);
     XCTAssertTrue(editedTask != orignalTask, @"Edited task [%@] does equal old task [%@].", editedTask, task1);
@@ -154,8 +161,8 @@
     XCTAssertTrue(task1.taskId == editedTask.taskId, @"Edited Task Id [%ld] does not equal [%ld].", (long)task1.taskId, (long)editedTask.taskId);
     XCTAssertTrue([task1.taskName isEqualToString: @"editedTest"], @"Edited Task Name [%@] does not equal set value editedTest.", task1.taskName);
     XCTAssertTrue(task1.taskName == editedTask.taskName, @"Edited Task Name [%@] does not equal set value [%@].", task1.taskName, editedTask.taskName);
-    XCTAssertTrue(task1.dueDate == newDate, @"Edited Task Due Date [%@] does not equal set value [%@].", task1.dueDate, newDate);
-    XCTAssertTrue(task1.dueDate == editedTask.dueDate, @"Edited Task Due Date [%@] does not equal set value [%@].", task1.dueDate, editedTask.dueDate);
+    XCTAssertTrue([task1.dueDate isEqualToDate: newDate], @"Edited Task Due Date [%@] does not equal set value [%@].", task1.dueDate, newDate);
+    XCTAssertTrue([task1.dueDate isEqualToDate: editedTask.dueDate], @"Edited Task Due Date [%@] does not equal set value [%@].", task1.dueDate, editedTask.dueDate);
     XCTAssertTrue([task1.description isEqualToString: @"editedTest | 7/13/18"], @"Edited Task Description [%@] does not equal set value [editedTest | 7/13/18].", task1.description);
     XCTAssertTrue([task1.description isEqualToString: editedTask.description], @"Edited Task Description [%@] does not equal set value [%@].", task1.description, editedTask.description);
     XCTAssertTrue(task1 == editedTask, @"Edited task [%@] does not equal set task [%@].", task1, editedTask);
