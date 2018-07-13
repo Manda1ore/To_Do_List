@@ -8,6 +8,11 @@
 
 #import "ViewController.h"
 
+@interface ViewController ()
+
+@property(nonatomic, assign) NSInteger counter;
+@end
+
 @implementation ViewController
 
 - (void)viewDidLoad {
@@ -48,7 +53,7 @@
 
 - (void)updateTaskList:(Task *) task{
     bool taskFound = NO;
-    for (int num = 0; num < self.taskArray.count && !taskFound; num++) {
+    for (NSInteger num = 0; num < self.taskArray.count && !taskFound; num++) {
         if (num == task.taskId) {
             taskFound = YES;
             [self.taskArray replaceObjectAtIndex:num withObject:task];
@@ -65,7 +70,7 @@
     TaskCreationViewController *destViewController = segue.destinationViewController;
     destViewController.delegate = self;
     if ([[segue identifier] isEqualToString:@"ToCreateTask"]) {
-        [destViewController setId: (long)_counter];
+        [destViewController setId: self.counter];
     } else if ([[segue identifier] isEqualToString:@"editTask"]) {
         UITableViewCell *cell = sender;
         int taskId = (int)[cell.detailTextLabel.text integerValue];

@@ -11,11 +11,12 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *dueDatePicker;
 @property (weak, nonatomic) IBOutlet UITextField *taskNameTextBox;
 @property (strong, nonatomic) Task *currentTask;
+@property (nonatomic, assign) NSInteger currentId;
 @end
 
 @implementation TaskCreationViewController
 
-int currentId;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,7 +24,7 @@ int currentId;
     if (self.currentTask) {
         _taskNameTextBox.text = self.currentTask.taskName;
         _dueDatePicker.date = self.currentTask.dueDate;
-        currentId = self.currentTask.taskId;
+        self.currentId = self.currentTask.taskId;
     }
 }
 
@@ -33,7 +34,7 @@ int currentId;
 }
 
 - (IBAction)saveTask:(id)sender {
-    Task *task = [[Task alloc] initWithId:currentId];
+    Task *task = [[Task alloc] initWithId:self.currentId];
     task.taskName = self.taskNameTextBox.text;
     task.dueDate = self.dueDatePicker.date;
     [self.delegate updateTaskList:task];
@@ -44,8 +45,8 @@ int currentId;
     _currentTask = task;
 }
 
-- (void) setId: (int) currId {
-    currentId = currId;
+- (void) setId:(NSInteger)currId {
+    self.currentId = currId;
 }
 
 @end
