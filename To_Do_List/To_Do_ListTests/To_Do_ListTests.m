@@ -45,7 +45,7 @@
     task.taskName = @"test";
     task.dueDate = [NSDate date];
     [self.viewController updateTaskList:(task)];
-    
+    XCTAssertTrue(((Task*)[self.viewController.taskArray objectAtIndex:0]).taskId == 0);
     XCTAssertEqual(1, self.viewController.taskArray.count);
     XCTAssertTrue([self.viewController tableView:self.viewController.taskTable numberOfRowsInSection:0] == 1);
     
