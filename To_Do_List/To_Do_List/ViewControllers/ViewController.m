@@ -8,21 +8,13 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-{
-    NSInteger counter;
-}
-
-@property(nonatomic, strong) Task *selectedTask;
-@property(nonatomic, assign) NSInteger counter;
-@end
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _taskArray = [NSMutableArray array];
     self.navigationItem.hidesBackButton = true;
-    counter = 0;
+    _counter = 0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,15 +22,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     NSString *cellIdentifier = @"cellID";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    Task *task;
-    task = [self.taskArray objectAtIndex:indexPath.row];
+    Task *task = [self.taskArray objectAtIndex:indexPath.row];
     [cell.textLabel setText:task.description];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld",(long)task.taskId];
     return cell;
@@ -66,7 +56,7 @@
     }
     if (!taskFound) {
         [self.taskArray addObject:task];
-        counter++;
+        _counter++;
     }
     [self.taskTable reloadData];
 }
@@ -75,7 +65,7 @@
     TaskCreationViewController *destViewController = segue.destinationViewController;
     destViewController.delegate = self;
     if ([[segue identifier] isEqualToString:@"ToCreateTask"]) {
-        [destViewController setId: counter];
+        [destViewController setId: (long)_counter];
     } else if ([[segue identifier] isEqualToString:@"editTask"]) {
         UITableViewCell *cell = sender;
         int taskId = (int)[cell.detailTextLabel.text integerValue];

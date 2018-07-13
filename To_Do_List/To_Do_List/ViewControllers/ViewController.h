@@ -13,6 +13,7 @@
 
 @property(nonatomic,strong) NSMutableArray *taskArray;
 @property(nonatomic, strong) IBOutlet UITableView *taskTable;
+@property(nonatomic, assign) NSInteger counter;
 
 @end
 
