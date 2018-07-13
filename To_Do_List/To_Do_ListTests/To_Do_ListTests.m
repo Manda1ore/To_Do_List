@@ -45,6 +45,12 @@
     XCTAssertTrue(self.viewController.taskArray.count == 1, @"Array [%lu] does not have 1 Item.", (unsigned long)self.viewController.taskArray.count);
     
     // TEST CREATED TASK
+    XCTAssertTrue(task.taskId == 0, @"Created Task Id [%ld] does not equal 0.", (long)task.taskId);
+    XCTAssertTrue([task.taskName isEqualToString: @"test"], @"Created Task Name [%@] does not equal set value test.", task.taskName);
+    XCTAssertTrue(task.dueDate == newDate, @"Created Task Due Date [%@] does not equal set value [%@].", task.dueDate, newDate);
+    XCTAssertTrue([task.description isEqualToString: @"test | 7/13/18"], @"Created Task Description [%@] does not equal set value [test | 7/13/18].", task.description);
+    
+    // TEST ADDED TASK
     XCTAssertTrue(new.taskId == 0, @"Created Task Id [%ld] does not equal 0.", (long)new.taskId);
     XCTAssertTrue(new.taskId == task.taskId, @"Created Task Id [%ld] does not equal [%ld].", (long)new.taskId, (long)task.taskId);
     XCTAssertTrue([new.taskName isEqualToString: @"test"], @"Created Task Name [%@] does not equal set value test.", new.taskName);
